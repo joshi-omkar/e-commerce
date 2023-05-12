@@ -1,0 +1,92 @@
+.navbar {
+  display: flex;
+  background-color: #fff;
+  padding: 1%;
+  height: 80px;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.searchbar {
+  display: flex;
+  align-items: center;
+  border: 1px solid #9a9a9a;
+  padding: 8px;
+  width: 421px;
+  height: 40px;
+  gap: 5px;
+  border-radius: 5px;
+}
+
+.searchbar-input {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  font-size: 16px;
+}
+
+.searchbar-input:focus {
+  outline: none;
+}
+
+.right-container {
+  display: flex;
+  width: 300px;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.navbar-cart {
+  display: flex;
+}
+
+.navbar-wishlist {
+  display: flex;
+}
+
+.navbar-counter {
+  display: flex;
+  width: 20px;
+  height: 20px;
+  background-color: #ef4444;
+  border-radius: 50%;
+  justify-content: center;
+  /* align-items: center; */
+  color: #fff;
+  transform: translate(-10px, -10px);
+}
+
+.navbar-counter > p {
+  transform: translateY(-1px);
+}
+
+.navbar-cart > p {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  color: #9a9a9a;
+}
+
+.login-button {
+  height: 40px;
+  width: 100px;
+  border-radius: 0px;
+  border: none;
+  cursor: pointer;
+  background-color: #9A9A9A;
+}
+
+.login-button:hover {
+    background-color: #848484;
+  }
+
+.login-button > p {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  color: #ffffff;
+}
