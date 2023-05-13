@@ -1,0 +1,11 @@
+.home{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.homepagePoster>img{
+    width: 1479.2px;
+    height: 400px;
+}

@@ -1,0 +1,46 @@
+.newArrivals {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.newArrival-card {
+  display: flex;
+  background-color: #c4c4c4b2;
+  padding: 35px;
+  width: 728px;
+  gap: 80px;
+}
+
+.newArrival-card > div {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  gap: 100px;
+}
+
+.newArrival-card > div > p {
+font-size: 18px;
+font-weight: 400;
+line-height: 27px;
+letter-spacing: 0px;
+text-align: left;
+
+  }
+
+.newArrival-card > div > div > h3 {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 42px;
+  letter-spacing: 0px;
+  text-align: left;
+}
+
+.newArrival-card > div > div > p {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 27px;
+  letter-spacing: 0px;
+  text-align: left;
+}

@@ -1,0 +1,21 @@
+.categories {
+  display: flex;
+  justify-content: space-between;
+}
+
+.category{
+    cursor: pointer;
+}
+
+.category > h3 {
+  position: absolute;
+  background-color: #fff;
+  width: 286px;
+  top: 21%;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  letter-spacing: 0px;
+  color: #9a9a9a;
+}
