@@ -1,8 +1,11 @@
 import React from 'react'
+import Filter from '../Components/Filter'
 
 const ProductListing = () => {
   return (
-    <div>ProductListing</div>
+    <div>
+      <Filter/>
+    </div>
   )
 }
 
