@@ -1,12 +1,13 @@
 .filter-container {
   width: 325px;
-  position: fixed;
+  position: sticky;
   background-color: #fff;
-  height: 1000px;
+  height: 100vh;
   padding: 25px;
   display: flex;
   flex-direction: column;
   gap: 30px;
+  top: 0;
 }
 
 .filter-heading-clear {

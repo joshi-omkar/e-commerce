@@ -3,8 +3,12 @@ import Search from "../Assets/search";
 import Wishlist from "../Assets/Wishlist";
 import Cart from "../Assets/Cart";
 import '../Styles/navbar.css'
+import {Link} from 'react-router-dom'
 
 const Navbar = () => {
+
+
+
   return (
     <div className="navbar">
       <div className="logo">
@@ -20,9 +24,9 @@ const Navbar = () => {
           <span className="navbar-counter"><p>0</p></span>
         </div>
         <div className="navbar-cart">
-          <Cart />
+        <Link to={`/cart`}><Cart /></Link>
           <span className="navbar-counter"><p>0</p></span>
-          <p>Cart</p>
+          <Link to={`/cart`}><p>Cart</p></Link>
         </div>
         <div className="navbar-button-container">
           <button className="login-button">

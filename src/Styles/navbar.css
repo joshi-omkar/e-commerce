@@ -2,7 +2,7 @@
   display: flex;
   background-color: #fff;
   padding: 1%;
-  height: 80px;
+  height: 60px;
   justify-content: space-around;
   align-items: center;
 }
@@ -60,7 +60,7 @@
   transform: translateY(-1px);
 }
 
-.navbar-cart > p {
+.navbar-cart > a >p {
   font-style: normal;
   font-weight: 700;
   font-size: 16px;
