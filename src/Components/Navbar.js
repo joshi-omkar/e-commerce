@@ -29,9 +29,9 @@ const Navbar = () => {
           <Link to={`/cart`}><p>Cart</p></Link>
         </div>
         <div className="navbar-button-container">
-          <button className="login-button">
+          <Link to={`\login`} className="login-button-navbar">
             <p>Login</p>
-          </button>
+          </Link>
         </div>
       </div>
     </div>

@@ -60,7 +60,7 @@
   transform: translateY(-1px);
 }
 
-.navbar-cart > a >p {
+.navbar-cart > a > p {
   font-style: normal;
   font-weight: 700;
   font-size: 16px;
@@ -69,24 +69,29 @@
   color: #9a9a9a;
 }
 
-.login-button {
+.login-button-navbar {
   height: 40px;
   width: 100px;
   border-radius: 0px;
   border: none;
   cursor: pointer;
-  background-color: #9A9A9A;
+  background-color: #9a9a9a;
+  display: flex;
+  justify-content: center;
 }
 
-.login-button:hover {
-    background-color: #848484;
-  }
+.login-button-navbar:hover {
+  background-color: #848484;
+}
 
-.login-button > p {
+.login-button-navbar > p {
   font-style: normal;
   font-weight: 700;
   font-size: 16px;
   line-height: 24px;
   text-align: center;
   color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

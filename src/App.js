@@ -8,6 +8,7 @@ import ProductListing from "./Pages/ProductListing";
 import SingleProduct from "./Pages/SingleProduct";
 import Wishlist from "./Pages/Wishlist";
 import Navbar from "./Components/Navbar";
+import Mockman from 'mockman-js'
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
         <Route path={`/products/:category`} exact element={<ProductListing />} />
         <Route path={`/products/:id`} exact element={<SingleProduct />} />
         <Route path={`/wishlist`} exact element={<Wishlist />} />
+        <Route path={`/mockman`} exact element={<Mockman/>} />
       </Routes>
     </div>
   );
