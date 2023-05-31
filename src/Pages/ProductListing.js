@@ -1,55 +1,28 @@
-import React from "react";
+import React, { useContext } from "react";
+import { ProductContext } from "../App";
 import Filter from "../Components/Filter";
 import ProductCard from "../Components/ProductCard";
-import Img from "../Assets/product.webp";
 import "../Styles/productListing.css";
 
 const ProductListing = () => {
+  const productData = useContext(ProductContext);
+
   return (
     <div className="product-listing">
-      <Filter className="filter-container"/>
+      <Filter className="filter-container" />
       <div className="productcard-container">
-        <ProductCard
-          imgName={Img}
-          productName={"Shirt for Mens"}
-          productPrice={"Rs. 2000"}
-        />
-        <ProductCard
-          imgName={Img}
-          productName={"Shirt for Mens"}
-          productPrice={"Rs. 2000"}
-        />
-        <ProductCard
-          imgName={Img}
-          productName={"Shirt for Mens"}
-          productPrice={"Rs. 2000"}
-        />
-        <ProductCard
-          imgName={Img}
-          productName={"Shirt for Mens"}
-          productPrice={"Rs. 2000"}
-        />
-        <ProductCard
-          imgName={Img}
-          productName={"Shirt for Mens"}
-          productPrice={"Rs. 2000"}
-        />
-        <ProductCard
-          imgName={Img}
-          productName={"Shirt for Mens"}
-          productPrice={"Rs. 2000"}
-        />
-
-        <ProductCard
-          imgName={Img}
-          productName={"Shirt for Mens"}
-          productPrice={"Rs. 2000"}
-        />
-        <ProductCard
-          imgName={Img}
-          productName={"Shirt for Mens"}
-          productPrice={"Rs. 2000"}
-        />
+        {productData.map((product, key) => {
+          return (
+            <ProductCard
+              key={product.id}
+              imgName={product.image}
+              productName={product.title}
+              productPrice={product.price}
+              productDesciption={product.description}
+              id={product.id}
+            />
+          );
+        })}
       </div>
     </div>
   );
