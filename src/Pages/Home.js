@@ -5,10 +5,10 @@ import HomePoster from '../Components/HomePoster'
 import posterImg from '../Assets/posterImg.png'
 import NewArrival from '../Components/NewArrivalCard'
 
-const Home = () => {
+const Home = ({setCategory}) => {
   return (
     <div className='home'>
-      <Catogories/>
+      <Catogories setCategory={setCategory}/>
       <HomePoster posterImg={posterImg}/>
       <NewArrival/>
     </div>

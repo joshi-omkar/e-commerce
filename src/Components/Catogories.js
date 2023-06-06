@@ -2,13 +2,15 @@ import React from "react";
 import categoryImg from "../Assets/Category.png";
 import '../Styles/category.css'
 import { useNavigate } from "react-router-dom";
+import { useCart } from "../context/cartContext";
 
-const CategoryComponent = ({ categoryImg, categoryTitle }) => {
+const CategoryComponent = ({ categoryImg, categoryTitle, setCategory }) => {
 
   const navigate = useNavigate()
 
   const handleOnClickCategory = () =>{
-    navigate(`/products/${categoryTitle.toLowerCase()}`)
+    setCategory(categoryTitle)
+    navigate(`/products`)
   }
 
   return (
@@ -19,7 +21,7 @@ const CategoryComponent = ({ categoryImg, categoryTitle }) => {
   );
 };
 
-const Catogories = () => {
+const Catogories = ({setCategory}) => {
   const categories = [
     {
       categoryImg: categoryImg,
@@ -42,6 +44,7 @@ const Catogories = () => {
             <CategoryComponent
               categoryImg={category.categoryImg}
               categoryTitle={category.categoryTitle}
+              setCategory={setCategory}
             />
         );
       })}

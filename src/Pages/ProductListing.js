@@ -7,12 +7,12 @@ import { useCart } from "../context/cartContext";
 import { useFilter } from "../context/filterContext";
 import Loader from "../Assets/Loader";
 
-const ProductListing = () => {
+const ProductListing = ({category, setCategory}) => {
   const { productData, setProductData, showLoader } = useCart();
   const { filteredData, categoricalData, products } = useFilter();
   // const { setProductList, productList } = useCart();
   const [price, setPrice] = useState(null);
-  const [category, setCategory] = useState(null);
+  // const [category, setCategory] = useState(null);
   const [selectedRating, setSelectedRating] = useState(null);
 
   const getProductData = () => {

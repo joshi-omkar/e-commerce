@@ -50,7 +50,6 @@ const Wishlist = () => {
           }}
         >
           {wishlist?.map((item, key) => {
-            console.log(item)
             return (
               <div>
                 <WishlistCard
