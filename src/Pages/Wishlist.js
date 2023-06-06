@@ -50,11 +50,11 @@ const Wishlist = () => {
           }}
         >
           {wishlist?.map((item, key) => {
+            console.log(item)
             return (
               <div>
                 <WishlistCard
                   id={item.id}
-                  rating={item.rating.rate}
                   imgName={item.image}
                   productName={item.title}
                   productPrice={item.price}
