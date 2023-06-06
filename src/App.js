@@ -9,13 +9,24 @@ import Cart from "./Pages/Cart";
 import ProductListing from "./Pages/ProductListing";
 import SingleProduct from "./Pages/SingleProduct";
 import Wishlist from "./Pages/Wishlist";
+import Profile from "./Pages/Profile";
+import PlaceOrder from "./Pages/PlaceOrder";
 import Navbar from "./Components/Navbar";
 import Mockman from "mockman-js";
+import { useCart } from "./context/cartContext";
+import RequireAuth from "./Components/RequireAuth";
+import CheckOut from "./Pages/CheckOut";
 
-export const ProductContext = createContext(null);
+export const TokenContext = createContext({});
+export const UserContext = createContext({ user: {} });
 
 const App = () => {
-  const [productData, setProductData] = useState([]);
+  const getUserToken = localStorage.getItem("token");
+  const { productData, setProductData } = useCart();
+
+  const [isAuth, setIsAuth] = useState(getUserToken !== null ? true : false);
+  const [user, setUser] = useState([]);
+
   const getProductData = () => {
     axios
       .get("/api/products")
@@ -30,26 +41,66 @@ const App = () => {
   useEffect(() => {
     getProductData();
   }, []);
+
   return (
-    <div className="App">
-      <Navbar />
-      <ProductContext.Provider value={productData}>
+    <UserContext.Provider value={{ user, setUser, getUserToken }}>
+      <div className="App">
+        <Navbar productData={productData} />
         <Routes>
           <Route path={`/`} exact element={<Home />} />
           <Route path={`/login`} exact element={<Login />} />
           <Route path={`/signup`} exact element={<Signup />} />
-          <Route path={`/cart`} exact element={<Cart />} />
           <Route
-            path={`/products/:category`}
+            path={`/cart`}
             exact
-            element={<ProductListing />}
+            element={
+              <RequireAuth>
+                <Cart />
+              </RequireAuth>
+            }
           />
+          <Route path={`/products`} exact element={<ProductListing />} />
           <Route path={`/product/:id`} exact element={<SingleProduct />} />
-          <Route path={`/wishlist`} exact element={<Wishlist />} />
+          <Route
+            path={`/wishlist`}
+            exact
+            element={
+              <RequireAuth>
+                <Wishlist />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path={`/profile`}
+            exact
+            element={
+              <RequireAuth>
+                <Profile />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path={`/placeOrder`}
+            exact
+            element={
+              <RequireAuth>
+                <PlaceOrder />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path={`/checkOut`}
+            exact
+            element={
+              <RequireAuth>
+                <CheckOut />
+              </RequireAuth>
+            }
+          />
           <Route path={`/mockman`} exact element={<Mockman />} />
         </Routes>
-      </ProductContext.Provider>
-    </div>
+      </div>
+    </UserContext.Provider>
   );
 };
 

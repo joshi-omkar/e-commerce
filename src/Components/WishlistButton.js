@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Wishlist from "../Assets/Wishlist";
 import RedHeartIcon from "../Assets/red-heart-icon";
 
-const WishlistButton = ({ top, left, right, bottom }) => {
+const WishlistButton = () => {
   const [clicked, setClicked] = useState(false);
 
   const handleOnClickWishlist = () => {
@@ -13,7 +13,6 @@ const WishlistButton = ({ top, left, right, bottom }) => {
     <>
       {clicked ? (
         <div
-          style={{ top: top, left: left, right: right, bottom: bottom }}
           onClick={handleOnClickWishlist}
           className="wishlist-logo"
         >
@@ -21,7 +20,6 @@ const WishlistButton = ({ top, left, right, bottom }) => {
         </div>
       ) : (
         <div
-          style={{ top: top, left: left, right: right, bottom: bottom }}
           onClick={handleOnClickWishlist}
           className="wishlist-logo"
         >

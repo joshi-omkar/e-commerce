@@ -38,13 +38,13 @@
   line-height: 28px;
 }
 
-.cart-price > p:last-child {
+/* .cart-price > p:last-child {
   font-size: 20px;
   font-weight: 650;
   line-height: 28px;
   color: #ababab;
   text-decoration-line: line-through;
-}
+} */
 
 .cart-discount {
   font-size: 20px;

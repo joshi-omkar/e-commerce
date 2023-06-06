@@ -1,5 +1,6 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "../Styles/filter.css";
+import { useFilter } from "../context/filterContext";
 
 const FilterByPrice = ({ price, handleChange }) => {
   return (
@@ -7,14 +8,12 @@ const FilterByPrice = ({ price, handleChange }) => {
       <h3>Price</h3>
       <div className="price-slider">
         <div>
-          <label htmlFor="price">50</label>
-          <label htmlFor="price">100</label>
-          <label htmlFor="price">150</label>
+          <label htmlFor="price">{price} and above</label>
         </div>
         <input
           type="range"
-          min="50"
-          max="150"
+          min="0"
+          max="500"
           value={price}
           onChange={handleChange}
           className="slider"
@@ -25,38 +24,48 @@ const FilterByPrice = ({ price, handleChange }) => {
   );
 };
 
-const FilterByCategory = ({ categories }) => {
-  const checkboxRef = useRef(null);
+const FilterByCategory = ({ onCategoryChange }) => {
+  const [selectedCategories, setSelectedCategories] = useState([]);
 
-  const handleClick = () => {
-    checkboxRef.current.click();
+  const categories = ["Mens", "Jewelery", "Electronics"]
+
+  const handleCategoryChange = (category) => {
+    const updatedCategories = selectedCategories.includes(category)
+      ? selectedCategories.filter((c) => c !== category)
+      : [...selectedCategories, category];
+
+    setSelectedCategories(updatedCategories);
+    onCategoryChange(updatedCategories); 
   };
 
   return (
     <div className="filter-by-category">
       <h3>Category</h3>
       <div className="checkbox-input-container">
-        {categories.map((category, key) => {
-          return (
-            <div className="checkbox-input" onClick={handleClick}>
-              <label className="">
-                <input type="checkbox" ref={checkboxRef} />
-                {category} Category
-              </label>
-            </div>
-          );
-        })}
+        {categories.map((category, key) => (
+          <div key={key} className="checkbox-input">
+            <label>
+              <input
+                type="checkbox"
+                value={category}
+                checked={selectedCategories.includes(category)}
+                onChange={() => handleCategoryChange(category)}
+              />
+              {category} Category
+            </label>
+          </div>
+        ))}
       </div>
     </div>
   );
 };
 
-const FilterByRating = ({ rating }) => {
-  const [selectedOption, setSelectedOption] = useState(4);
-
-  const handleOptionChange = (event) => {
-    setSelectedOption(event.target.value);
-  };
+const FilterByRating = ({
+  rating,
+  handleOptionChange,
+  selectedOption,
+  setSelectedOption,
+}) => {
   return (
     <div className="filter-by-rating">
       <h3>Rating</h3>
@@ -80,12 +89,7 @@ const FilterByRating = ({ rating }) => {
   );
 };
 
-const SortByPrice = () => {
-  const [selectedOption, setSelectedOption] = useState(0);
-
-  const handleOptionChange = (event) => {
-    setSelectedOption(event.target.value);
-  };
+const SortByPrice = ({ selectedOption, handleOptionChange }) => {
   return (
     <div className="filter-by-rating">
       <h3>Sort by</h3>
@@ -116,15 +120,40 @@ const SortByPrice = () => {
 };
 
 const Filter = () => {
-  const [price, setPrice] = useState(50);
+  const { price, setPrice, getPrice, getCategory, getRating, getSortData, filterData } =
+    useFilter();
+  const [seletcedCategory, setSelectedCategory] = useState();
+  const [selectedCategories, setSelectedCategories] = useState([]);
+  const [selectedRating, setSelectedRating] = useState(1);
+  const [sort, setSort] = useState();
+
+  const handleCategoryChange = (selectedCategories) => {
+    setSelectedCategories(selectedCategories);
+    // getCategory(event.target.value);
+    filterData(selectedCategories)
+  };
+
+  const handleSortData = (event) => {
+    setSort(event.target.value);
+    getSortData(event.target.value);
+  };
+
+  const handleOptionChange = (event) => {
+    setSelectedRating(event.target.value);
+    getRating(event.target.value);
+  };
 
   function handleChange(event) {
-    setPrice(event.target.value);
+    setPrice(Number(event.target.value));
+    getPrice();
   }
 
-  const categories = ["Mens", "Womens", "Kids"];
+  useEffect(() => {
+    // getCategory(seletcedCategory);
+    // getSortData(sort)
+  }, []);
 
-  const rating = [4, 3, 2, 1];
+  const rating = [1, 2, 3, 4];
 
   return (
     <div className="filter-container">
@@ -133,9 +162,20 @@ const Filter = () => {
         <button>Clear</button>
       </div>
       <FilterByPrice price={price} handleChange={handleChange} />
-      <FilterByCategory categories={categories} />
-      <FilterByRating rating={rating} />
-      <SortByPrice />
+      <FilterByCategory
+        selectedCategory={seletcedCategory}
+        setSelectedCategory={setSelectedCategory}
+        // categories={categories}
+        onCategoryChange={handleCategoryChange} 
+        // handleOptionChange={handleCategoryChange}
+      />
+      <FilterByRating
+        handleOptionChange={handleOptionChange}
+        selectedOption={selectedRating}
+        setSelectedOption={setSelectedRating}
+        rating={rating}
+      />
+      <SortByPrice handleOptionChange={handleSortData} selectedOption={sort} />
     </div>
   );
 };

@@ -20,9 +20,9 @@ export const getAllProductsHandler = function () {
  * */
 
 export const getProductHandler = function (schema, request) {
-  const productId = request.params.productId;
+  const id = request.params.productId;
   try {
-    const product = schema.products.findBy({ _id: productId });
+    const product = schema.products.findBy({ id: id });
     return new Response(200, {}, { product });
   } catch (error) {
     return new Response(

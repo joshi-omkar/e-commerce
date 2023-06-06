@@ -8,14 +8,12 @@ import axios from "axios";
 import { useCart } from "../context/cartContext";
 import { useAuthContext } from "../context/authContext";
 
-const ProductCard = ({
-  image,
-  title,
-  price,
-  description,
+const WishlistCard = ({
+  imgName,
+  productName,
+  productPrice,
+  productDesciption,
   id,
-  top,
-  left,
   rating,
 }) => {
   const [clicked, setClicked] = useState(false);
@@ -26,22 +24,18 @@ const ProductCard = ({
   const { addToCart, addToWishlist, removeFromWishlist, wishlist } = useCart();
   const { isLoggedIn } = useAuthContext();
 
-  const item = {
-    image,
-    title,
-    price,
-    description,
-    id,
-  };
+  let disabledWishlist = wishlist.find((item) => item.id === id) !== undefined;
 
   const handleOnClickWishlist = () => {
     setClicked(!clicked);
-    addToWishlist(item)
   };
-  
-  const handleRemoveFromWishlist = () => {
-    setClicked(!clicked);
-    removeFromWishlist(item)
+
+  const item = {
+    imgName,
+    productName,
+    productPrice,
+    productDesciption,
+    id,
   };
 
   const handleAddToCart = () => {
@@ -63,10 +57,14 @@ const ProductCard = ({
     navigate("/cart");
   };
 
+  const handleRemoveFromWishlist = () => {
+    setClicked(!clicked);
+    removeFromWishlist(item);
+  };
+
   const handleGoToLoginPage = () => {
     navigate("/login");
   };
-
   return (
     <div style={{ marginTop: "-45px" }}>
       <div>
@@ -74,17 +72,9 @@ const ProductCard = ({
           style={{ top: "57px", left: "241px" }}
           className="product-wishlist"
         >
-          <>
-              {clicked ? (
-                <div onClick={handleRemoveFromWishlist} className="wishlist-logo">
-                  <RedHeartIcon />
-                </div>
-              ) : (
-                <div onClick={handleOnClickWishlist} className="wishlist-logo">
-                  <Wishlist />
-                </div>
-              )}
-            </>
+          <div onClick={handleRemoveFromWishlist} className="wishlist-logo">
+            <RedHeartIcon />
+          </div>
         </div>
         <Link to={`/product/${id}`} className="product-card">
           <div
@@ -99,11 +89,11 @@ const ProductCard = ({
           >
             {rating} &#9733;
           </div>
-          <img src={image} alt={title} />
+          <img src={imgName} alt={imgName} />
           <div className="product-info">
-            <h3>{title}</h3>
-            <p className="product-description">{description}</p>
-            <p className="product-price">&#8377; {price}</p>
+            <h3>{productName}</h3>
+            <p className="product-description">{productDesciption}</p>
+            <p className="product-price">&#8377; {productPrice}</p>
           </div>
         </Link>
 
@@ -128,4 +118,4 @@ const ProductCard = ({
   );
 };
 
-export default ProductCard;
+export default WishlistCard;

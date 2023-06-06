@@ -1,24 +1,27 @@
-import React, { useState } from "react";
-import { Link, useNavigate  } from "react-router-dom";
+import React, { useState, createContext, useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import "../Styles/login.css";
 import axios from "axios";
+import { UserContext } from "../App";
+import { useAuthContext } from "../context/authContext";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const navigate = useNavigate();
+  const { logIn, setEmail, setPassword } = useAuthContext();
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
-    await axios
-      .post("/api/auth/login", JSON.stringify({ email, password }))
-      .then((res) => {
-        console.log(res);
-        const token = res.data.encodedToken;
-        localStorage.setItem("token", token);
-        navigate('/')
-      })
-      .catch((err) => console.log(err));
+    logIn();
+  };
+
+  const guestUserData = {
+    email: "omkar@gmail.com",
+    password: "Omkar@123",
+  };
+
+  const handleGuestLogin = () => {
+    setEmail(guestUserData.email);
+    setPassword(guestUserData.password);
+    logIn();
   };
 
   return (
@@ -52,6 +55,9 @@ const Login = () => {
         <Link>Forgot your password?</Link>
       </div>
       <button className="login-button">Login</button>
+      <button onClick={handleGuestLogin} className="login-button">
+        Login as guest
+      </button>
       <Link style={{ textAlign: "center" }} to={`/signup`}>
         Create New Account
       </Link>

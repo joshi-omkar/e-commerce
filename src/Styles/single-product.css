@@ -56,3 +56,23 @@ text-transform: capitalize;
     top: 0;
     left: 0;
 }
+
+.add-to-cart{
+    background-color: #121212;
+    padding: 10px;
+    font-size: 18px;
+    border: none;
+    border-radius: 12px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.add-to-cart:hover{
+    background-color: #000;
+}
+
+.single-product-wishlist{
+    width: 45px;
+    height: 45px;
+    transform: translate(330px, -60px) !important; 
+}

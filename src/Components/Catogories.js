@@ -27,19 +27,11 @@ const Catogories = () => {
     },
     {
       categoryImg: categoryImg,
-      categoryTitle: "Womens",
-    },
-    {
-      categoryImg: categoryImg,
-      categoryTitle: "Kids",
+      categoryTitle: "Jewelery",
     },
     {
       categoryImg: categoryImg,
       categoryTitle: "Electronics",
-    },
-    {
-      categoryImg: categoryImg,
-      categoryTitle: "Home",
     },
   ];
 
