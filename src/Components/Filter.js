@@ -2,7 +2,12 @@ import React, { useState, useRef, useEffect } from "react";
 import "../Styles/filter.css";
 import { useFilter } from "../context/filterContext";
 
-const FilterByPrice = ({ price, handleChange }) => {
+const FilterByPrice = ({ price, setPrice, handleChange }) => {
+  const handleOnChangePrice = (event) => {
+    setPrice(event.target.value);
+    handleChange("price", event.target.value);
+  };
+
   return (
     <div className="filter-price">
       <h3>Price</h3>
@@ -15,7 +20,7 @@ const FilterByPrice = ({ price, handleChange }) => {
           min="0"
           max="500"
           value={price}
-          onChange={handleChange}
+          onChange={handleOnChangePrice}
           className="slider"
           id="price"
         />
@@ -27,7 +32,7 @@ const FilterByPrice = ({ price, handleChange }) => {
 const FilterByCategory = ({ onCategoryChange }) => {
   const [selectedCategories, setSelectedCategories] = useState([]);
 
-  const categories = ["Mens", "Jewelery", "Electronics"]
+  const categories = ["Mens", "Jewelery", "Electronics"];
 
   const handleCategoryChange = (category) => {
     const updatedCategories = selectedCategories.includes(category)
@@ -35,7 +40,7 @@ const FilterByCategory = ({ onCategoryChange }) => {
       : [...selectedCategories, category];
 
     setSelectedCategories(updatedCategories);
-    onCategoryChange(updatedCategories); 
+    onCategoryChange("category", category);
   };
 
   return (
@@ -61,24 +66,30 @@ const FilterByCategory = ({ onCategoryChange }) => {
 };
 
 const FilterByRating = ({
-  rating,
   handleOptionChange,
   selectedOption,
-  setSelectedOption,
+  setSelectedRating,
 }) => {
+  const rating = [1, 2, 3, 4];
+
+  const handleRatingChange = (event) => {
+    setSelectedRating(event.target.value);
+    handleOptionChange("rating", Number(event.target.value));
+  };
+
   return (
     <div className="filter-by-rating">
       <h3>Rating</h3>
       <div className="radio-input-container">
         {rating.map((rate, key) => {
           return (
-            <label>
+            <label key={key}>
               <input
                 type="radio"
                 name={rate}
                 value={rate}
                 checked={Number(selectedOption) === rate}
-                onChange={handleOptionChange}
+                onChange={handleRatingChange}
               />
               {rate} star and above
             </label>
@@ -89,7 +100,12 @@ const FilterByRating = ({
   );
 };
 
-const SortByPrice = ({ selectedOption, handleOptionChange }) => {
+const SortByPrice = ({ selectedOption, setSort, handleOptionChange }) => {
+  const handleChangeSort = (event) => {
+    setSort(event.target.value);
+    handleOptionChange("sort", Number(event.target.value));
+  };
+
   return (
     <div className="filter-by-rating">
       <h3>Sort by</h3>
@@ -100,7 +116,7 @@ const SortByPrice = ({ selectedOption, handleOptionChange }) => {
             name="low-to-high"
             value={0}
             checked={Number(selectedOption) === 0}
-            onChange={handleOptionChange}
+            onChange={handleChangeSort}
           />
           Price - low to high
         </label>
@@ -110,7 +126,7 @@ const SortByPrice = ({ selectedOption, handleOptionChange }) => {
             name="low-to-high"
             value={1}
             checked={Number(selectedOption) === 1}
-            onChange={handleOptionChange}
+            onChange={handleChangeSort}
           />
           Price - high to low
         </label>
@@ -119,63 +135,37 @@ const SortByPrice = ({ selectedOption, handleOptionChange }) => {
   );
 };
 
-const Filter = () => {
-  const { price, setPrice, getPrice, getCategory, getRating, getSortData, filterData } =
-    useFilter();
-  const [seletcedCategory, setSelectedCategory] = useState();
-  const [selectedCategories, setSelectedCategories] = useState([]);
-  const [selectedRating, setSelectedRating] = useState(1);
-  const [sort, setSort] = useState();
-
-  const handleCategoryChange = (selectedCategories) => {
-    setSelectedCategories(selectedCategories);
-    // getCategory(event.target.value);
-    filterData(selectedCategories)
-  };
-
-  const handleSortData = (event) => {
-    setSort(event.target.value);
-    getSortData(event.target.value);
-  };
-
-  const handleOptionChange = (event) => {
-    setSelectedRating(event.target.value);
-    getRating(event.target.value);
-  };
-
-  function handleChange(event) {
-    setPrice(Number(event.target.value));
-    getPrice();
-  }
-
-  useEffect(() => {
-    // getCategory(seletcedCategory);
-    // getSortData(sort)
-  }, []);
-
-  const rating = [1, 2, 3, 4];
+const Filter = ({
+  sort,
+  setSort,
+  selectedRating,
+  setSelectedRating,
+  handleFilterChange,
+}) => {
+  const { price, setPrice } = useFilter();
 
   return (
     <div className="filter-container">
       <div className="filter-heading-clear">
         <h3>Filters</h3>
-        <button>Clear</button>
+        <button onClick={()=>{handleFilterChange('clear', ); setPrice(0)}}>Clear</button>
       </div>
-      <FilterByPrice price={price} handleChange={handleChange} />
-      <FilterByCategory
-        selectedCategory={seletcedCategory}
-        setSelectedCategory={setSelectedCategory}
-        // categories={categories}
-        onCategoryChange={handleCategoryChange} 
-        // handleOptionChange={handleCategoryChange}
+      <FilterByPrice
+        price={price}
+        setPrice={setPrice}
+        handleChange={handleFilterChange}
       />
+      <FilterByCategory onCategoryChange={handleFilterChange} />
       <FilterByRating
-        handleOptionChange={handleOptionChange}
+        handleOptionChange={handleFilterChange}
         selectedOption={selectedRating}
-        setSelectedOption={setSelectedRating}
-        rating={rating}
+        setSelectedRating={setSelectedRating}
       />
-      <SortByPrice handleOptionChange={handleSortData} selectedOption={sort} />
+      <SortByPrice
+        handleOptionChange={handleFilterChange}
+        selectedOption={sort}
+        setSort={setSort}
+      />
     </div>
   );
 };
