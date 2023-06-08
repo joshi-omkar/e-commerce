@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import Filter from "../Components/Filter";
 import ProductCard from "../Components/ProductCard";
 import "../Styles/productListing.css";
@@ -44,7 +44,6 @@ const ProductListing = () => {
     selectedRating,
     sort
   );
-  console.log(itemsToShow);
   return (
     <div className="product-listing">
       <Filter

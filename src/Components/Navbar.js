@@ -41,7 +41,7 @@ const Navbar = ({ productData }) => {
     <div className="navbar">
       <div className="logo">
         <Link to={`/`}>
-          <h3>MyShoppingSite</h3>
+          <h3>SportKart</h3>
         </Link>
       </div>
       <div style={{ display: "flex" }}>

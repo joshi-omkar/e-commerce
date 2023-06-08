@@ -19,9 +19,11 @@ const Cart = () => {
     );
   };
 
+  console.log(cartProducts)
+
   return (
     <div className="cart">
-      <h3>Cart(1)</h3>
+      <h3>Cart({cartProducts.length})</h3>
       <div className="cart-conatiner">
         <>
           {showLoader ? (
@@ -38,7 +40,7 @@ const Cart = () => {
             <ShowNothingOnPage />
           ) : (
             <div className="cart-product-container">
-              {cartProducts?.map((cartItem, key) => {
+              {cartProducts?.map((cartItem) => {
                 return (
                   <CartCard
                     key={cartItem.id}

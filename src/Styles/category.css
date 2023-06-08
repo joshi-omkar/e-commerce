@@ -4,8 +4,10 @@
   cursor: pointer;
 }
 
-.category{
-    cursor: pointer;
+.category {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
 }
 
 .category > h3 {

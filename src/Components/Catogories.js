@@ -1,8 +1,8 @@
 import React from "react";
 import categoryImg from "../Assets/Category.png";
+import Slider from "react-slick";
 import "../Styles/category.css";
 import { useNavigate } from "react-router-dom";
-import { useCart } from "../context/cartContext";
 import { useFilter } from "../context/filterContext";
 
 const CategoryComponent = ({
@@ -35,37 +35,57 @@ const Catogories = () => {
   const { setSelectedCategories, selectedCategories, handleFilterChange } =
     useFilter();
 
-  console.log(selectedCategories);
-
   const categories = [
     {
       categoryImg: categoryImg,
-      categoryTitle: "Mens",
+      categoryTitle: "Football",
     },
     {
       categoryImg: categoryImg,
-      categoryTitle: "Jewelery",
+      categoryTitle: "Table Tennis",
     },
     {
       categoryImg: categoryImg,
-      categoryTitle: "Electronics",
+      categoryTitle: "Tennis",
+    },
+    {
+      categoryImg: categoryImg,
+      categoryTitle: "Hockey",
+    },
+    {
+      categoryImg: categoryImg,
+      categoryTitle: "Cricket",
+    },
+    {
+      categoryImg: categoryImg,
+      categoryTitle: "Basketball",
     },
   ];
 
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+  };
+
   return (
-    <div className="categories">
-      {categories.map((category, key) => {
-        return (
-          <CategoryComponent
-            key={key}
-            categoryImg={category.categoryImg}
-            categoryTitle={category.categoryTitle}
-            selectedCategories={selectedCategories}
-            setSelectedCategories={setSelectedCategories}
-            handleFilterChange={handleFilterChange}
-          />
-        );
-      })}
+    <div style={{margin: '0 20px'}}>
+    <Slider {...settings}>
+        {categories.map((category, key) => {
+          return (
+            <CategoryComponent
+              key={key}
+              categoryImg={category.categoryImg}
+              categoryTitle={category.categoryTitle}
+              selectedCategories={selectedCategories}
+              setSelectedCategories={setSelectedCategories}
+              handleFilterChange={handleFilterChange}
+            />
+          );
+        })}
+    </Slider>
     </div>
   );
 };

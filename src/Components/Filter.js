@@ -18,7 +18,7 @@ const FilterByPrice = ({ price, setPrice, handleChange }) => {
         <input
           type="range"
           min="0"
-          max="500"
+          max="8000"
           value={price}
           onChange={handleOnChangePrice}
           className="slider"
@@ -34,7 +34,14 @@ const FilterByCategory = ({
   selectedCategories,
   setSelectedCategories,
 }) => {
-  const categories = ["Mens", "Jewelery", "Electronics"];
+  const categories = [
+    "Basketball",
+    "Cricket",
+    "Hockey",
+    "Tennis",
+    "Table Tennis",
+    "Football",
+  ];
 
   const handleCategoryChange = (category) => {
     const updatedCategories = selectedCategories.includes(category)
@@ -47,7 +54,7 @@ const FilterByCategory = ({
 
   return (
     <div className="filter-by-category">
-      <h3>Category</h3>
+      <h3>Categories</h3>
       <div className="checkbox-input-container">
         {categories.map((category, key) => (
           <div key={key} className="checkbox-input">
@@ -58,7 +65,7 @@ const FilterByCategory = ({
                 checked={selectedCategories.includes(category)}
                 onChange={() => handleCategoryChange(category)}
               />
-              {category} Category
+              {category}
             </label>
           </div>
         ))}
@@ -147,7 +154,6 @@ const Filter = ({
   setSelectedCategories,
 }) => {
   const { price, setPrice } = useFilter();
-  // const [selectedCategories, setSelectedCategories] = useState([]);
 
   return (
     <div className="filter-container">

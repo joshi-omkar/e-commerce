@@ -11,7 +11,7 @@ export function AuthProvider({ children }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState([]);
   const [token, setToken] = useState("");
-  // const { resetCounters, loginDataLoad } = useCart();
+  const { resetCounters, loginDataLoad } = useCart();
   // const { setShowLoader } = useCart();
 
   const logIn = async () => {
@@ -21,11 +21,11 @@ export function AuthProvider({ children }) {
         console.log(res);
         const token = res.data.encodedToken;
         setUser(res.data.foundUser);
+        loginDataLoad()
         setToken(token);
         localStorage.setItem("token", token);
         localStorage.setItem("user", JSON.stringify(res.data.foundUser));
         setIsLoggedIn(true);
-        // loginDataLoad();
         navigate("/");
       })
       .catch((err) => console.log(err));
@@ -34,6 +34,7 @@ export function AuthProvider({ children }) {
   const logOut = () => {
     setIsLoggedIn(false);
     setUser([]);
+    resetCounters()
     setToken("");
     localStorage.removeItem("token");
     localStorage.removeItem("user");

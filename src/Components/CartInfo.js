@@ -39,7 +39,7 @@ const CartInfo = ({ cartProducts }) => {
             <label>{Math.round(bill * 100) / 100}</label>
           </div>
           <div className="divider"></div>
-          <Link style={{textAlign: 'center'}} to={"/paceOrder"} className="place-order">
+          <Link style={{textAlign: 'center'}} to={"/placeOrder"} className="place-order">
             Place Order
           </Link>
         </div>

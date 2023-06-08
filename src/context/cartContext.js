@@ -129,7 +129,6 @@ export const CartProvider = ({ children }) => {
   };
 
   const removeFromCart = async (item) => {
-    console.log(item.id)
     const header = {
       authorization: localStorage.getItem("token"),
     };

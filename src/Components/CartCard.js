@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 const CartCard = ({ product }) => {
   const { addToWishlist, wishlist, removeFromCart, updateCartItem } = useCart();
   const navigate = useNavigate();
-  // const [addedToWishlist, setAddedToWishlist] = useState(false);
 
   const handleAddToWishlist = () => {
     addToWishlist(product);
@@ -18,18 +17,14 @@ const CartCard = ({ product }) => {
 
   const handleRemoveFromCart = () => {
     removeFromCart(product);
-  }
+  };
 
   let disabledWishlist =
     wishlist.find((item) => item.id === product.id) !== undefined;
 
   return (
     <div className="cart-component">
-      <img
-        className="cart-img"
-        src={product.image}
-        alt={product.title}
-      />
+      <img className="cart-img" src={product.image} alt={product.title} />
       <div className="cart-card-info">
         <p className="cart-title">{product.title}</p>
         <div className="cart-price">

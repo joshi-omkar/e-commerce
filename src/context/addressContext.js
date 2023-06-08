@@ -9,7 +9,7 @@ export function AddressProvider({ children }) {
   const [isAdressUpdated, setIsAdressUpdated] = useState(false);
   const [isEditAddress, setIsEditAddress] = useState(false);
   const [isAddAddress, setIsAddAddress] = useState(false);
-  const [addresses, setAddresses] = useState([]);
+  const [addresses, setAddresses] = useState(user?.address);
   const navigate = useNavigate();
 
   const updateUserAddress = async (address, setIsAddressForm) => {
@@ -22,7 +22,9 @@ export function AddressProvider({ children }) {
         body: JSON.stringify({ address }),
       });
       const resJson = await res.json();
+      console.log({...addresses, address:resJson?.address})
       if (res.status === 200) {
+        // user?.address = resJson?.address
         setAddresses(resJson?.address);
         setIsAddressForm(false);
       }
@@ -64,6 +66,8 @@ export function AddressProvider({ children }) {
       console.log(err);
     }
   };
+
+  console.log(user)
 
   return (
     <AddressContext.Provider
