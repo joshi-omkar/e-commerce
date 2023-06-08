@@ -29,8 +29,12 @@ const FilterByPrice = ({ price, setPrice, handleChange }) => {
   );
 };
 
-const FilterByCategory = ({ onCategoryChange }) => {
-  const [selectedCategories, setSelectedCategories] = useState([]);
+const FilterByCategory = ({
+  onCategoryChange,
+  selectedCategories,
+  setSelectedCategories,
+}) => {
+  // const [selectedCategories, setSelectedCategories] = useState([]);
 
   const categories = ["Mens", "Jewelery", "Electronics"];
 
@@ -143,19 +147,34 @@ const Filter = ({
   handleFilterChange,
 }) => {
   const { price, setPrice } = useFilter();
+  const [selectedCategories, setSelectedCategories] = useState([]);
 
   return (
     <div className="filter-container">
       <div className="filter-heading-clear">
         <h3>Filters</h3>
-        <button onClick={()=>{handleFilterChange('clear', ); setPrice(0)}}>Clear</button>
+        <button
+          onClick={() => {
+            handleFilterChange("clear");
+            setPrice(0);
+            setSelectedCategories([]);
+            setSort()
+            setSelectedRating(1)
+          }}
+        >
+          Clear
+        </button>
       </div>
       <FilterByPrice
         price={price}
         setPrice={setPrice}
         handleChange={handleFilterChange}
       />
-      <FilterByCategory onCategoryChange={handleFilterChange} />
+      <FilterByCategory
+        setSelectedCategories={setSelectedCategories}
+        selectedCategories={selectedCategories}
+        onCategoryChange={handleFilterChange}
+      />
       <FilterByRating
         handleOptionChange={handleFilterChange}
         selectedOption={selectedRating}
