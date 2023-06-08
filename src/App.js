@@ -17,16 +17,8 @@ import { useCart } from "./context/cartContext";
 import RequireAuth from "./Components/RequireAuth";
 import CheckOut from "./Pages/CheckOut";
 
-export const TokenContext = createContext({});
-export const UserContext = createContext({ user: {} });
-
 const App = () => {
-  const getUserToken = localStorage.getItem("token");
   const { productData, setProductData } = useCart();
-
-  const [isAuth, setIsAuth] = useState(getUserToken !== null ? true : false);
-  const [user, setUser] = useState([]);
-  const [category, setCategory] = useState(null);
 
   const getProductData = () => {
     axios
@@ -43,14 +35,11 @@ const App = () => {
     getProductData();
   }, []);
 
-  console.log(category)
-
   return (
-    <UserContext.Provider value={{ user, setUser, getUserToken }}>
       <div className="App">
         <Navbar productData={productData} />
         <Routes>
-          <Route path={`/`} exact element={<Home setCategory={setCategory}/>} />
+          <Route path={`/`} exact element={<Home />} />
           <Route path={`/login`} exact element={<Login />} />
           <Route path={`/signup`} exact element={<Signup />} />
           <Route
@@ -62,7 +51,7 @@ const App = () => {
               </RequireAuth>
             }
           />
-          <Route path={`/products`} exact element={<ProductListing category={category} setCategory={setCategory} />} />
+          <Route path={`/products`} exact element={<ProductListing />} />
           <Route path={`/product/:id`} exact element={<SingleProduct />} />
           <Route
             path={`/wishlist`}
@@ -103,7 +92,6 @@ const App = () => {
           <Route path={`/mockman`} exact element={<Mockman />} />
         </Routes>
       </div>
-    </UserContext.Provider>
   );
 };
 

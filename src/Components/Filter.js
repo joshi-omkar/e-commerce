@@ -34,8 +34,6 @@ const FilterByCategory = ({
   selectedCategories,
   setSelectedCategories,
 }) => {
-  // const [selectedCategories, setSelectedCategories] = useState([]);
-
   const categories = ["Mens", "Jewelery", "Electronics"];
 
   const handleCategoryChange = (category) => {
@@ -145,9 +143,11 @@ const Filter = ({
   selectedRating,
   setSelectedRating,
   handleFilterChange,
+  selectedCategories,
+  setSelectedCategories,
 }) => {
   const { price, setPrice } = useFilter();
-  const [selectedCategories, setSelectedCategories] = useState([]);
+  // const [selectedCategories, setSelectedCategories] = useState([]);
 
   return (
     <div className="filter-container">
@@ -158,8 +158,8 @@ const Filter = ({
             handleFilterChange("clear");
             setPrice(0);
             setSelectedCategories([]);
-            setSort()
-            setSelectedRating(1)
+            setSort();
+            setSelectedRating(1);
           }}
         >
           Clear

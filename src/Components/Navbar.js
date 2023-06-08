@@ -6,10 +6,12 @@ import "../Styles/navbar.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useCart } from "../context/cartContext";
 import { useAuthContext } from "../context/authContext";
+import { useFilter } from "../context/filterContext";
 
 const Navbar = ({ productData }) => {
   const navigate = useNavigate();
   const { cartProducts, wishListCounter } = useCart();
+  const { handleFilterChange } = useFilter();
   const itemsNum = cartProducts?.reduce((total, curr) => total + curr.qty, 0);
   const { isLoggedIn, logOut } = useAuthContext();
   const [searchQuery, setSearchQuery] = useState("");
@@ -30,9 +32,9 @@ const Navbar = ({ productData }) => {
       setFilteredData(filteredData);
     }
   };
-  
+
   const handleOnClickLogout = () => {
-    navigate('/profile')
+    navigate("/profile");
   };
 
   return (

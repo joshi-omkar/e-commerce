@@ -7,16 +7,20 @@ import { useCart } from "../context/cartContext";
 import { useFilter } from "../context/filterContext";
 import Loader from "../Assets/Loader";
 
-const ProductListing = ({ category, setCategory }) => {
+const ProductListing = () => {
   const { productData, setProductData, showLoader } = useCart();
-  const { filteredData, categoricalData, products, filterData } = useFilter();
-  // const { setProductList, productList } = useCart();
-  const [price, setPrice] = useState(null);
-  // const [category, setCategory] = useState(null);
-  const [filterPrice, setFilterPrice] = useState(0);
-  const [selectedRating, setSelectedRating] = useState(1);
-  const [sort, setSort] = useState();
-  const [selectedCategories, setSelectedCategories] = useState([]);
+  const {
+    filterData,
+    handleFilterChange,
+    setSelectedCategories,
+    selectedCategories,
+    setSort,
+    sort,
+    setSelectedRating,
+    selectedRating,
+    setFilterPrice,
+    filterPrice,
+  } = useFilter();
 
   const getProductData = () => {
     axios
@@ -32,42 +36,6 @@ const ProductListing = ({ category, setCategory }) => {
   useEffect(() => {
     getProductData();
   }, []);
-
-  const handleFilterChange = (filterType, value) => {
-    switch (filterType) {
-      case "category":
-        if (selectedCategories.includes(value)) {
-          setSelectedCategories(
-            selectedCategories.filter((category) => category !== value)
-          );
-        } else {
-          setSelectedCategories([...selectedCategories, value]);
-        }
-        break;
-
-      case "price":
-        setFilterPrice(value);
-        break;
-
-      case "rating":
-        setSelectedRating(value);
-        break;
-
-      case "sort":
-        setSort(value);
-        break;
-
-      case "clear":
-        setSelectedCategories([]);
-        setFilterPrice(0);
-        setSelectedRating(1);
-        setSort();
-        break;
-
-      default:
-        break;
-    }
-  };
 
   const itemsToShow = filterData(
     productData,
