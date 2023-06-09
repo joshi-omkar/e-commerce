@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import Search from "../Assets/search";
 import Wishlist from "../Assets/Wishlist";
 import Cart from "../Assets/Cart";
@@ -16,6 +16,26 @@ const Navbar = ({ productData }) => {
   const { isLoggedIn, logOut } = useAuthContext();
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredData, setFilteredData] = useState([]);
+  const searchInputRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        searchInputRef.current &&
+        !searchInputRef.current.contains(event.target) &&
+        !event.target.classList.contains('search-result-item')
+      ) {
+        setFilteredData([]);
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
+  
 
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
@@ -54,6 +74,7 @@ const Navbar = ({ productData }) => {
             <input
               className="searchbar-input"
               type="text"
+              ref={searchInputRef}
               placeholder="Search..."
               value={searchQuery}
               onChange={handleSearchChange}
@@ -63,7 +84,7 @@ const Navbar = ({ productData }) => {
             style={
               filteredData.length === 0
                 ? { display: "none" }
-                : { display: "block", zIndex: "10000000" }
+                : { display: "block", zIndex: "10000000", width: '421px' }
             }
           >
             {filteredData.length > 0 ? (
