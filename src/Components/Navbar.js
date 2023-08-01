@@ -22,8 +22,7 @@ const Navbar = ({ productData }) => {
     const handleClickOutside = (event) => {
       if (
         searchInputRef.current &&
-        !searchInputRef.current.contains(event.target) &&
-        !event.target.classList.contains('search-result-item')
+        !searchInputRef.current.contains(event.target) 
       ) {
         setFilteredData([]);
       }
@@ -90,14 +89,14 @@ const Navbar = ({ productData }) => {
             {filteredData.length > 0 ? (
               filteredData.map((item) => (
                 <Link to={`/product/${item.id}`} key={item.id}>
-                  <h3 style={{ backgroundColor: "#fff", padding: "10px" }}>
+                  <h3 style={{ backgroundColor: "#171717", padding: "10px" }}>
                     {item.title}
                   </h3>
                   {/* ... Other details */}
                 </Link>
               ))
             ) : (
-              <h2 style={{ backgroundColor: "#fff" }}>No items found.</h2>
+              <h2 style={{ backgroundColor: "#171717" }}>No items found.</h2>
             )}
           </div>
         </div>

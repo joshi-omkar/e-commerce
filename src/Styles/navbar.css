@@ -1,6 +1,6 @@
 .navbar {
   display: flex;
-  background-color: #fff;
+  background-color: #171717;
   padding: 1%;
   height: 60px;
   justify-content: space-around;
@@ -8,7 +8,7 @@
 }
 
 .logo > a > h3{
-  color: #000;
+  color: #eee;
 }
 
 .searchbar {
@@ -27,6 +27,8 @@
   height: 100%;
   border: 0;
   font-size: 16px;
+  background-color: #171717;
+  color: #eee;
 }
 
 .searchbar-input:focus {
@@ -44,14 +46,14 @@
   text-decoration: none;
   font-size: 20px;
   font-weight: 600;
-  color: #000;
+  color: #eeeeee;
 }
 
 .navbar-product{
   text-decoration: none;
   font-size: 20px;
   font-weight: 600;
-  color: #000;
+  color: #eeeeee;
 }
 
 .navbar-cart {
@@ -70,7 +72,7 @@
   border-radius: 50%;
   justify-content: center;
   /* align-items: center; */
-  color: #fff;
+  color: #eeeeee;
   transform: translate(-10px, -10px);
 }
 
@@ -84,7 +86,7 @@
   font-size: 20px;
   /* line-height: 24px; */
   text-align: center;
-  color: #000;
+  color: #eee;
 }
 
 .login-button-navbar {
@@ -96,11 +98,11 @@
   background-color: #212121;
   display: flex;
   justify-content: center;
-  transition: all 06s ease-in-out;
+  transition: all 0.8s ease-in-out;
 }
 
 .login-button-navbar:hover {
-  background-color: #000000;
+  border: 1px solid #171717;
 }
 
 .login-button-navbar > p {

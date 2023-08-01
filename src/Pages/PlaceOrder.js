@@ -14,10 +14,11 @@ const AddressCard = ({ addresses, selectedAddress, setSelectedAddress }) => {
           <div
             key={key}
             style={{
-              backgroundColor: "#fff",
+              backgroundColor: "#000",
               padding: "10px",
               margin: "20px",
               borderRadius: "12px",
+              color: "#eee"
             }}
           >
             <input

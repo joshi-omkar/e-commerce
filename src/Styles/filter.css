@@ -1,13 +1,14 @@
 .filter-container {
   width: 325px;
   position: sticky;
-  background-color: #fff;
+  background-color: #000;
   height: 100vh;
   padding: 25px;
   display: flex;
   flex-direction: column;
   gap: 30px;
   top: 0;
+  color: #eee;
 }
 
 .filter-heading-clear {
@@ -24,7 +25,7 @@
 }
 
 .filter-heading-clear > button {
-  background-color: #fff;
+  background-color: #000;
   border: none;
   text-decoration-line: underline;
   font-size: 16px;
@@ -33,6 +34,7 @@
   letter-spacing: 0em;
   text-align: left;
   cursor: pointer;
+  color: #eee;
 }
 
 .filter-price > h3 {

@@ -11,10 +11,11 @@
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    background-color: #fff;
+    background-color: #000;
     border-radius: 12px;
     padding: 20px;
     height: 720px;
+    color: #eee;
 }
 
 .single-product>div>img{
@@ -59,7 +60,7 @@ text-transform: capitalize;
 }
 
 .add-to-cart{
-    background-color: #121212;
+    background-color: #171717;
     padding: 10px;
     font-size: 18px;
     border: none;
@@ -69,7 +70,7 @@ text-transform: capitalize;
 }
 
 .add-to-cart:hover{
-    background-color: #000;
+
 }
 
 .single-product-wishlist{

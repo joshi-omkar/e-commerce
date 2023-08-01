@@ -24,12 +24,12 @@
   justify-content: space-between;
   align-items: center;
   padding: 15px 15px 0 15px;
-  background-color: #fff;
+  background-color: #000;
   border-radius: 12px 12px 0 0;
   gap: 10px;
   position: relative;
   cursor: pointer;
-  color: #000;
+  color: #fff;
 }
 
 .product-card > img {
@@ -59,7 +59,7 @@
   font-weight: 600;
   font-style: normal;
   line-height: 22px;
-  color: #888888;
+  color: #fff;
   text-align: center;
   width: 260px;
   white-space: nowrap;
@@ -76,14 +76,19 @@
 }
 
 .add-to-cart-button {
-  border: none;
-  background-color: #454545;
+  /* border: none; */
+  border-top: 1px solid #525252;
+  border-bottom: 0;
+  border-left: 0;
+  border-right: 0;
+  background-color: #000;
   /* width: 100%; */
   padding: 10px 0;
-  color: #fff;
+  color: #eee;
   width: 300px;
   border-radius: 0 0 12px 12px;
   cursor: pointer;
+
 }
 
 .product-wishlist {
@@ -100,7 +105,7 @@
   align-items: center;
   width: 45px;
   height: 45px;
-  background-color: #fff;
+  background-color: #000;
   border-radius: 50%;
   position: relative;
   cursor: pointer;
